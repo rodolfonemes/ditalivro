@@ -27,8 +27,9 @@ PreparedStatement pstmt;
             pstmt.setString(1, p.getUsuario());
             pstmt.setString(2, p.getSenha());
             pstmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro gravado com sucesso");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao gravar cliente" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Cpf já cadastrado");
         }
     }        
    
@@ -43,9 +44,10 @@ PreparedStatement pstmt;
         try {
             con = CriarConexao.getConexao();
             pstmt = con.prepareStatement(sInsert);
-            pstmt.setString   (1, p.getSenha());
+            pstmt.setString(1, p.getSenha());
             pstmt.setString(2, p.getUsuario());
             pstmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Cadastro atualizado");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao gravar cliente" + ex.getMessage());
         }

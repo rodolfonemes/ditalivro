@@ -3,6 +3,8 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.AttributeSet;
@@ -47,6 +49,10 @@ public class Fproduto extends javax.swing.JFrame {
         btprocurar.setVisible(false);
         tbDescricao.setDocument(new DocumentoLimitado(400));
         calendario.setDate(new Date());
+        btCadastroSalvar.setEnabled(false);
+        tbUsuarioCadastro.setEnabled(false);
+        tbSenhaCadastro.setEnabled(false);
+        btAtualizarCadastro.setEnabled(false);
         //String texto = tbDescricao.getText();
         //int tamanhoDoTexto = texto.length();
         //lbContador.setText(String.valueOf(tamanhoDoTexto));
@@ -135,6 +141,12 @@ public class Fproduto extends javax.swing.JFrame {
         tbValor.setText(String.valueOf(pro.getValor()));
         tbQuantidade.setText(String.valueOf(pro.getQuant()));
         tbDescricao.setText(pro.getDescricao());
+    }
+
+    private void carregarFormulario(Usuario pro) {
+        tbUsuarioCadastro.setText(String.valueOf(pro.getUsuario()));
+        tbSenhaCadastro.setText(pro.getSenha());
+
     }
 
     @SuppressWarnings("unchecked")
@@ -251,6 +263,20 @@ public class Fproduto extends javax.swing.JFrame {
         btRemoverVenda = new javax.swing.JButton();
         tbFinalizarVenda = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        tbCadastro = new javax.swing.JButton();
+        usuario = new javax.swing.JLayeredPane();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        tbUsuarioCadastro = new javax.swing.JTextField();
+        tbSenhaCadastro = new javax.swing.JPasswordField();
+        checkSenha = new javax.swing.JCheckBox();
+        btConsultarCadastro = new javax.swing.JButton();
+        btCadastroSalvar = new javax.swing.JButton();
+        btAtualizarCadastro = new javax.swing.JButton();
+        btCadastroSair = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tabelaUsuario = new javax.swing.JTable();
+        btCadatroNovo = new javax.swing.JButton();
 
         jMenu3.setText("jMenu3");
 
@@ -368,7 +394,7 @@ public class Fproduto extends javax.swing.JFrame {
         loginLayout.setVerticalGroup(
             loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
-                .addContainerGap(145, Short.MAX_VALUE)
+                .addContainerGap(123, Short.MAX_VALUE)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -986,9 +1012,17 @@ public class Fproduto extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Vendas", abaVendas);
 
+        tbCadastro.setText("Cadastro de usuario");
+        tbCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbCadastroActionPerformed(evt);
+            }
+        });
+
         tela.setLayer(btLogoff, javax.swing.JLayeredPane.DEFAULT_LAYER);
         tela.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         tela.setLayer(jTabbedPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        tela.setLayer(tbCadastro, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout telaLayout = new javax.swing.GroupLayout(tela);
         tela.setLayout(telaLayout);
@@ -996,6 +1030,8 @@ public class Fproduto extends javax.swing.JFrame {
             telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tbCadastro)
+                .addGap(18, 18, 18)
                 .addComponent(btLogoff)
                 .addGap(25, 25, 25))
             .addGroup(telaLayout.createSequentialGroup()
@@ -1011,7 +1047,9 @@ public class Fproduto extends javax.swing.JFrame {
             telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(telaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btLogoff)
+                .addGroup(telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btLogoff)
+                    .addComponent(tbCadastro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1019,28 +1057,187 @@ public class Fproduto extends javax.swing.JFrame {
                 .addGap(25, 25, 25))
         );
 
+        jLabel23.setText("Cpf");
+
+        jLabel24.setText("Senha");
+
+        tbSenhaCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbSenhaCadastroActionPerformed(evt);
+            }
+        });
+
+        checkSenha.setText("jCheckBox1");
+
+        btConsultarCadastro.setText("Consultar");
+        btConsultarCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btConsultarCadastroActionPerformed(evt);
+            }
+        });
+
+        btCadastroSalvar.setText("Salvar");
+        btCadastroSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCadastroSalvarActionPerformed(evt);
+            }
+        });
+
+        btAtualizarCadastro.setText("Atualizar");
+        btAtualizarCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAtualizarCadastroActionPerformed(evt);
+            }
+        });
+
+        btCadastroSair.setText("Sair");
+        btCadastroSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCadastroSairActionPerformed(evt);
+            }
+        });
+
+        tabelaUsuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Cpf"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaUsuarioMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tabelaUsuario);
+        if (tabelaUsuario.getColumnModel().getColumnCount() > 0) {
+            tabelaUsuario.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        btCadatroNovo.setText("Novo");
+        btCadatroNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCadatroNovoActionPerformed(evt);
+            }
+        });
+
+        usuario.setLayer(jLabel23, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        usuario.setLayer(jLabel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        usuario.setLayer(tbUsuarioCadastro, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        usuario.setLayer(tbSenhaCadastro, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        usuario.setLayer(checkSenha, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        usuario.setLayer(btConsultarCadastro, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        usuario.setLayer(btCadastroSalvar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        usuario.setLayer(btAtualizarCadastro, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        usuario.setLayer(btCadastroSair, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        usuario.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        usuario.setLayer(btCadatroNovo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout usuarioLayout = new javax.swing.GroupLayout(usuario);
+        usuario.setLayout(usuarioLayout);
+        usuarioLayout.setHorizontalGroup(
+            usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(usuarioLayout.createSequentialGroup()
+                .addGap(232, 232, 232)
+                .addGroup(usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(usuarioLayout.createSequentialGroup()
+                            .addComponent(btConsultarCadastro)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btAtualizarCadastro))
+                        .addComponent(checkSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(usuarioLayout.createSequentialGroup()
+                            .addComponent(jLabel24)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(tbSenhaCadastro))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, usuarioLayout.createSequentialGroup()
+                            .addComponent(jLabel23)
+                            .addGap(23, 23, 23)
+                            .addComponent(tbUsuarioCadastro))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, usuarioLayout.createSequentialGroup()
+                            .addComponent(btCadatroNovo)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btCadastroSalvar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btCadastroSair)))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(224, Short.MAX_VALUE))
+        );
+        usuarioLayout.setVerticalGroup(
+            usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(usuarioLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btCadatroNovo)
+                    .addComponent(btCadastroSalvar)
+                    .addComponent(btCadastroSair))
+                .addGap(18, 18, 18)
+                .addGroup(usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(usuarioLayout.createSequentialGroup()
+                        .addComponent(tbUsuarioCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel24)
+                            .addComponent(tbSenhaCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(checkSenha)
+                        .addGap(18, 18, 18)
+                        .addGroup(usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btConsultarCadastro)
+                            .addComponent(btAtualizarCadastro)))
+                    .addComponent(jLabel23))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(17, Short.MAX_VALUE)
                     .addComponent(tela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(18, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(login, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(login)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(tela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -1208,6 +1405,7 @@ public class Fproduto extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tela.setVisible(true);
         login.setVisible(false);
+        usuario.setVisible(false);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
@@ -1223,7 +1421,7 @@ public class Fproduto extends javax.swing.JFrame {
                 pr = bd.procurarUsuario(tbUsuario.getText());
                 if (pr != null) {
 
-                    usuario =tbUsuario.getText();
+                    usuario = tbUsuario.getText();
                     senha = tbSenha.getText();
 
                     if (senha.equals(pr.getSenha()) & usuario.equals(pr.getUsuario())) {
@@ -1253,6 +1451,7 @@ public class Fproduto extends javax.swing.JFrame {
     private void btLogoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogoffActionPerformed
         tela.setVisible(false);
         login.setVisible(true);
+        usuario.setVisible(false);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btLogoffActionPerformed
@@ -1420,6 +1619,146 @@ public class Fproduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbConsultaVendaActionPerformed
 
+    private void tbSenhaCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbSenhaCadastroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbSenhaCadastroActionPerformed
+
+    private void btConsultarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarCadastroActionPerformed
+        Usuario pr;
+
+        BDusuario bd;
+        List<Usuario> listaUsuario;
+        Usuario pr1;
+        bd = new BDusuario();
+        listaUsuario = bd.consultarUsuario(tbUsuario.getText());
+        DefaultTableModel model = (DefaultTableModel) tabelaUsuario.getModel();
+        model.setNumRows(0);
+        for (Usuario lisUsuario : listaUsuario) {
+            pr1 = lisUsuario;
+
+            model.addRow(new Object[]{
+                pr1.getUsuario()
+            }
+            );
+        }
+        btCadatroNovo.setEnabled(true);
+        btCadastroSalvar.setEnabled(false);
+
+
+    }//GEN-LAST:event_btConsultarCadastroActionPerformed
+
+    private void tbCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbCadastroActionPerformed
+        tela.setVisible(false);
+        login.setVisible(false);
+        usuario.setVisible(true);
+    }//GEN-LAST:event_tbCadastroActionPerformed
+
+    private void tabelaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaUsuarioMouseClicked
+        BDusuario bd;
+        Usuario pro;
+        String iCodigo;
+        iCodigo = (String) tabelaUsuario.getModel().getValueAt(tabelaUsuario.getSelectedRow(), 0);
+        bd = new BDusuario();
+        pro = new Usuario();
+        try {
+            pro = bd.procurarUsuario(iCodigo);
+
+            carregarFormulario(pro);
+
+        } catch (SQLException ex) {
+
+        }
+        tbSenhaCadastro.setEnabled(true);
+        btAtualizarCadastro.setEnabled(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabelaUsuarioMouseClicked
+
+    private void btAtualizarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarCadastroActionPerformed
+
+        Usuario pr;
+        pr = new Usuario();
+        pr.setUsuario(tbUsuarioCadastro.getText());
+        pr.setSenha(tbSenhaCadastro.getText());
+
+        BDusuario bdpr = new BDusuario();
+        try {
+            bdpr.atualizarUsuario(pr);
+            //JOptionPane.showMessageDialog(null, "Registro gravado com sucesso");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir registro");
+
+        }
+        tbUsuarioCadastro.setText("");
+        tbSenhaCadastro.setText("");
+        tbSenhaCadastro.setEnabled(false);
+        ((DefaultTableModel) tabelaUsuario.getModel()).setNumRows(0);
+        tabelaUsuario.updateUI();
+        btAtualizarCadastro.setEnabled(false);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btAtualizarCadastroActionPerformed
+
+    private void btCadatroNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadatroNovoActionPerformed
+        tbUsuarioCadastro.setText("");
+        tbSenhaCadastro.setText("");
+        ((DefaultTableModel) tabelaUsuario.getModel()).setNumRows(0);
+        tabelaUsuario.updateUI();
+        tbUsuarioCadastro.setEnabled(true);
+        tbSenhaCadastro.setEnabled(true);
+        btCadastroSalvar.setEnabled(true);
+        btCadatroNovo.setEnabled(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btCadatroNovoActionPerformed
+
+    private void btCadastroSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastroSalvarActionPerformed
+       
+        
+        Usuario pr;
+        pr = new Usuario();
+      
+        
+         BDusuario bdpr = new BDusuario();
+        
+        if (!"".equals(tbUsuarioCadastro.getText()) & !"".equals(tbSenhaCadastro.getText())) {
+          
+            pr.setUsuario(tbUsuarioCadastro.getText());
+        pr.setSenha(tbSenhaCadastro.getText());
+            //BDusuario bdpr = new BDusuario();
+            try {
+                bdpr.adicionarUsuario(pr);
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao gravar");
+            }
+            tbUsuarioCadastro.setText("");
+            tbSenhaCadastro.setText("");
+            tbUsuarioCadastro.setEnabled(false);
+            tbSenhaCadastro.setEnabled(false);
+            btCadastroSalvar.setEnabled(false);
+            btCadatroNovo.setEnabled(true);
+         
+                    }else {
+            JOptionPane.showMessageDialog(null, "Cpf e Senha são obrigatorios para cadastro");
+        }
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_btCadastroSalvarActionPerformed
+
+    private void btCadastroSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastroSairActionPerformed
+        tela.setVisible(true);
+        login.setVisible(false);
+        usuario.setVisible(false);
+        tbUsuarioCadastro.setText("");
+        tbSenhaCadastro.setText("");
+        ((DefaultTableModel) tabelaUsuario.getModel()).setNumRows(0);
+        tabelaUsuario.updateUI();
+        tbUsuarioCadastro.setEnabled(false);
+        tbSenhaCadastro.setEnabled(false);
+        btCadastroSalvar.setEnabled(false);
+        btCadatroNovo.setEnabled(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btCadastroSairActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1441,7 +1780,12 @@ public class Fproduto extends javax.swing.JFrame {
     private javax.swing.JTabbedPane abaConsulta;
     private javax.swing.JTabbedPane abaVendas;
     private javax.swing.JButton btAtualizar;
+    private javax.swing.JButton btAtualizarCadastro;
+    private javax.swing.JButton btCadastroSair;
+    private javax.swing.JButton btCadastroSalvar;
+    private javax.swing.JButton btCadatroNovo;
     private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btConsultarCadastro;
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btLogar;
@@ -1453,6 +1797,7 @@ public class Fproduto extends javax.swing.JFrame {
     private javax.swing.JButton btprocurar;
     private javax.swing.JPanel cadastro;
     private com.toedter.calendar.JDateChooser calendario;
+    private javax.swing.JCheckBox checkSenha;
     private javax.swing.JPanel consulta;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
@@ -1471,6 +1816,8 @@ public class Fproduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1512,6 +1859,7 @@ public class Fproduto extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lb1;
@@ -1522,11 +1870,13 @@ public class Fproduto extends javax.swing.JFrame {
     private javax.swing.JLayeredPane login;
     private javax.swing.JPanel painelDados;
     private javax.swing.JPanel painelVendas;
+    private javax.swing.JTable tabelaUsuario;
     private javax.swing.JTable tabelaVenda;
     private javax.swing.JButton tbAddVenda;
     private javax.swing.JTextField tbAno;
     private javax.swing.JTextField tbAutor;
     private javax.swing.JTextField tbAutorVenda;
+    private javax.swing.JButton tbCadastro;
     private javax.swing.JFormattedTextField tbClienteCpfVenda;
     private javax.swing.JTextField tbClienteNomeVenda;
     private javax.swing.JTextField tbConsultaVenda;
@@ -1539,13 +1889,16 @@ public class Fproduto extends javax.swing.JFrame {
     private javax.swing.JTextField tbQuantVenda;
     private javax.swing.JTextField tbQuantidade;
     private javax.swing.JPasswordField tbSenha;
+    private javax.swing.JPasswordField tbSenhaCadastro;
     private javax.swing.JTextField tbTipo;
     private javax.swing.JTextField tbTitulo;
     private javax.swing.JTextField tbTituloVenda;
     private javax.swing.JTextField tbUsuario;
+    private javax.swing.JTextField tbUsuarioCadastro;
     private javax.swing.JTextField tbValor;
     private javax.swing.JLayeredPane tela;
     private javax.swing.JTextField tfConsulta2;
+    private javax.swing.JLayeredPane usuario;
     // End of variables declaration//GEN-END:variables
 
     private void parseint(String text) {

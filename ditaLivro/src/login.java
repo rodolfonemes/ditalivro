@@ -93,16 +93,16 @@ public class login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         Usuario pr;
-        int usuario, usuarioBanco;
+        String usuario, usuarioBanco;
         String senha, senhaBanco;
         
         if (!(tbUsuario.getText().equals(""))) {
             try {
                 BDusuario bd = new BDusuario();
-                pr = bd.procurarUsuario(String.valueOf(tbUsuario.getText()));
+                pr = bd.procurarUsuario(tbUsuario.getText());
                 if (pr != null) {
 
-                    usuario = Integer.parseInt(tbUsuario.getText());
+                    usuario = tbUsuario.getText();
                     senha = tbSenha.getText();
                     
                     if(senha.equals(pr.getSenha()) & usuario == pr.getUsuario()){

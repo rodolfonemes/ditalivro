@@ -1,13 +1,19 @@
 
 import java.sql.SQLException;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class CadastroUsuario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CadastroUsuario
-     */
+    
+      private void carregarFormulario(Usuario pro) {
+        tbUsuario.setText(String.valueOf(pro.getUsuario()));
+        tbSenha.setText(pro.getSenha());
+        
+      }
+     
     public CadastroUsuario() {
         initComponents();
     }
@@ -23,24 +29,29 @@ public class CadastroUsuario extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         tbUsuario = new javax.swing.JTextField();
-        tbSenha = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btSalvar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        tbSenha = new javax.swing.JPasswordField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaUsuario = new javax.swing.JTable();
+        trocarSenha = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jButton1.setText("consultar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        tbSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbSenhaActionPerformed(evt);
             }
         });
 
@@ -62,46 +73,87 @@ public class CadastroUsuario extends javax.swing.JFrame {
             }
         });
 
+        tabelaUsuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "nome"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaUsuarioMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabelaUsuario);
+        if (tabelaUsuario.getColumnModel().getColumnCount() > 0) {
+            tabelaUsuario.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        trocarSenha.setText("Trocar senha no proximo login");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tbSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                    .addComponent(tbUsuario))
-                .addGap(12, 12, 12))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btSalvar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(trocarSenha)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btSalvar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2)
+                                .addGap(0, 15, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tbSenha)
+                                    .addComponent(tbUsuario))))
+                        .addGap(21, 21, 21))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(tbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tbSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(btSalvar)
                     .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(trocarSenha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -109,22 +161,39 @@ public class CadastroUsuario extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 Usuario pr;
-        if (!(tbUsuario.getText().equals(""))) {
-            try {
-                BDusuario bd = new BDusuario();
-                pr = bd.procurarUsuario(String.valueOf(tbUsuario.getText()));
-                if (pr != null) {
-                    tbUsuario.setText(String.valueOf(pr.getUsuario()));
-                    tbSenha.setText(pr.getSenha());
-                    
-                     JOptionPane.showMessageDialog(null, "Cliente cadastrado");                   
-                                    } else {
-                    JOptionPane.showMessageDialog(null, "Cliente nao cadastrado");
-                    
-                                   }
-            } catch (SQLException ex) {
+
+        BDusuario bd;
+        List<Usuario> listaUsuario;
+        Usuario pr1;
+        bd = new BDusuario();
+        listaUsuario = bd.consultarUsuario(tbUsuario.getText());
+        DefaultTableModel model = (DefaultTableModel) tabelaUsuario.getModel();
+        model.setNumRows(0);
+        for (Usuario lisUsuario : listaUsuario) {
+            pr1 = lisUsuario;
+
+            model.addRow(new Object[]{
+              pr1.getUsuario()
             }
-        }
+            );
+        }  
+        
+//        if (!(tbUsuario.getText().equals(""))) {
+//            try {
+//                BDusuario bd = new BDusuario();
+//                pr = bd.procurarUsuario(String.valueOf(tbUsuario.getText()));
+//                if (pr != null) {
+//                    tbUsuario.setText(String.valueOf(pr.getUsuario()));
+//                    tbSenha.setText(pr.getSenha());
+//                    
+//                     JOptionPane.showMessageDialog(null, "Cliente cadastrado");                   
+//                                    } else {
+//                    JOptionPane.showMessageDialog(null, "Cliente nao cadastrado");
+//                    
+//                                   }
+//            } catch (SQLException ex) {
+//            }
+//        }
 
 
 
@@ -132,15 +201,11 @@ Usuario pr;
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void tbSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbSenhaActionPerformed
-
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
 Usuario pr;
         pr = new Usuario();
            //if(pr.getIsbn()!= null){
-        pr.setUsuario(Integer.parseInt(tbUsuario.getText()));
+        pr.setUsuario(tbUsuario.getText());
         pr.setSenha(tbSenha.getText());
         
 
@@ -157,7 +222,7 @@ Usuario pr;
 
 Usuario pr;
         pr = new Usuario();
-        pr.setUsuario(Integer.parseInt(tbUsuario.getText()));
+        pr.setUsuario(tbUsuario.getText());
         pr.setSenha(tbSenha.getText());
         
 
@@ -171,6 +236,38 @@ Usuario pr;
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tabelaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaUsuarioMouseClicked
+BDusuario bd;
+        Usuario pro;
+        String iCodigo;
+        iCodigo = (String) tabelaUsuario.getModel().getValueAt(tabelaUsuario.getSelectedRow(), 0);
+        bd = new BDusuario();
+        pro = new Usuario();
+        try {
+            pro = bd.procurarUsuario(iCodigo);
+
+            carregarFormulario(pro);
+            
+        } catch (SQLException ex) {
+
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabelaUsuarioMouseClicked
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+
+      
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -213,7 +310,10 @@ Usuario pr;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField tbSenha;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabelaUsuario;
+    private javax.swing.JPasswordField tbSenha;
     private javax.swing.JTextField tbUsuario;
+    private javax.swing.JCheckBox trocarSenha;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 
@@ -22,7 +24,7 @@ PreparedStatement pstmt;
         try {
             con = CriarConexao.getConexao();
             pstmt = con.prepareStatement(sInsert);
-            pstmt.setInt(1, p.getUsuario());
+            pstmt.setString(1, p.getUsuario());
             pstmt.setString(2, p.getSenha());
             pstmt.executeUpdate();
         } catch (SQLException ex) {
@@ -42,7 +44,7 @@ PreparedStatement pstmt;
             con = CriarConexao.getConexao();
             pstmt = con.prepareStatement(sInsert);
             pstmt.setString   (1, p.getSenha());
-            pstmt.setInt   (2, p.getUsuario());
+            pstmt.setString(2, p.getUsuario());
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao gravar cliente" + ex.getMessage());
@@ -64,7 +66,7 @@ PreparedStatement pstmt;
             if (rs.next()) {
                 pr = new Usuario();
                 pr.setSenha(rs.getString("senha"));
-                pr.setUsuario(rs.getInt("cpf"));
+                pr.setUsuario(rs.getString("cpf"));
                 
                return pr;
             } else {
@@ -74,6 +76,41 @@ PreparedStatement pstmt;
             JOptionPane.showMessageDialog(null, "Erro ao gravar Operador"
                     + ex.getMessage());
             return pr;
+        }
+    }
+    
+    public List consultarUsuario(String pcodigo) {
+        String sSelect;
+        ResultSet rs;
+        Usuario pr; //, cli1;
+        List<Usuario> listaUsuario;
+        listaUsuario = new ArrayList<>();
+        pcodigo = "%" + pcodigo + "%";
+        sSelect = "SELECT * FROM usuario WHERE cpf like ? ";
+//JOptionPane.showMessageDialog(null,sSelect);
+//JOptionPane.showMessageDialog(null,pnome);
+        try {
+            con = CriarConexao.getConexao();
+            pstmt = con.prepareStatement(sSelect);
+            pstmt.setString(1, pcodigo);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                pr = new Usuario();
+                pr.setUsuario(rs.getString("cpf"));
+                pr.setSenha(rs.getString("senha"));
+                listaUsuario.add(pr);
+                //JOptionPane.showMessageDialog(null, "nome " + op.getNome());
+            }
+            Usuario pr1 = new Usuario();
+            for (int i = 0; i < listaUsuario.size(); i++) {
+                pr1 = listaUsuario.get(i);
+                //System.out.println(pr1.getNome());
+            }
+            return listaUsuario;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Usuario não encontrado"
+                    + ex.getMessage());
+            return null;
         }
     }
 

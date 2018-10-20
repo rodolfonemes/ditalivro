@@ -2,25 +2,25 @@
 public class Usuario {
 
     //Atributos
-    private int usuario;
+    private String usuario;
     private String senha;
 
     public Usuario() {
-        this.usuario = 0;
+        this.usuario = "";
         this.senha = "";
 
     }
 
-    public Usuario(int usuario, String senha) {
-        this.usuario = 0;
+    public Usuario(String usuario, String senha) {
+        this.usuario = "";
         this.senha = "";
     }
 
-    public int getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(int usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 

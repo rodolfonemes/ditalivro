@@ -173,10 +173,10 @@ public class Fproduto extends javax.swing.JFrame {
         login = new javax.swing.JLayeredPane();
         btLogar = new javax.swing.JButton();
         tbUsuario = new javax.swing.JTextField();
-        tbSenha = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        tbSenha = new javax.swing.JPasswordField();
         tela = new javax.swing.JLayeredPane();
         btLogoff = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -335,10 +335,10 @@ public class Fproduto extends javax.swing.JFrame {
 
         login.setLayer(btLogar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         login.setLayer(tbUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        login.setLayer(tbSenha, javax.swing.JLayeredPane.DEFAULT_LAYER);
         login.setLayer(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
         login.setLayer(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
         login.setLayer(jLabel15, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        login.setLayer(tbSenha, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout loginLayout = new javax.swing.GroupLayout(login);
         login.setLayout(loginLayout);
@@ -348,11 +348,7 @@ public class Fproduto extends javax.swing.JFrame {
                 .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(loginLayout.createSequentialGroup()
                         .addGap(270, 270, 270)
-                        .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(loginLayout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(btLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(loginLayout.createSequentialGroup()
                         .addGap(250, 250, 250)
                         .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -362,9 +358,12 @@ public class Fproduto extends javax.swing.JFrame {
                                 .addComponent(tbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(loginLayout.createSequentialGroup()
                                 .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tbSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(18, 18, 18)
+                                .addComponent(tbSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(251, 251, 251))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginLayout.createSequentialGroup()
+                .addComponent(btLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(275, 275, 275))
         );
         loginLayout.setVerticalGroup(
             loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,12 +375,12 @@ public class Fproduto extends javax.swing.JFrame {
                     .addComponent(tbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
                 .addGap(18, 18, 18)
-                .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tbSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel14)
+                    .addComponent(tbSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(btLogar)
-                .addGap(111, 111, 111))
+                .addGap(104, 104, 104))
         );
 
         btLogoff.setText("Logoff");
@@ -1215,19 +1214,19 @@ public class Fproduto extends javax.swing.JFrame {
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
         Usuario pr;
-        int usuario, usuarioBanco;
+        String usuario, usuarioBanco;
         String senha, senhaBanco;
 
         if (!(tbUsuario.getText().equals(""))) {
             try {
                 BDusuario bd = new BDusuario();
-                pr = bd.procurarUsuario(String.valueOf(tbUsuario.getText()));
+                pr = bd.procurarUsuario(tbUsuario.getText());
                 if (pr != null) {
 
-                    usuario = Integer.parseInt(tbUsuario.getText());
+                    usuario =tbUsuario.getText();
                     senha = tbSenha.getText();
 
-                    if (senha.equals(pr.getSenha()) & usuario == pr.getUsuario()) {
+                    if (senha.equals(pr.getSenha()) & usuario.equals(pr.getUsuario())) {
                         tela.setVisible(true);
                         login.setVisible(false);
                         tbUsuario.setText(null);
@@ -1539,7 +1538,7 @@ public class Fproduto extends javax.swing.JFrame {
     private javax.swing.JTextField tbIsbn;
     private javax.swing.JTextField tbQuantVenda;
     private javax.swing.JTextField tbQuantidade;
-    private javax.swing.JTextField tbSenha;
+    private javax.swing.JPasswordField tbSenha;
     private javax.swing.JTextField tbTipo;
     private javax.swing.JTextField tbTitulo;
     private javax.swing.JTextField tbTituloVenda;

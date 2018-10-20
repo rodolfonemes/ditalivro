@@ -825,12 +825,6 @@ public class Fproduto extends javax.swing.JFrame {
 
         jLabel22.setText("Data");
 
-        calendario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                calendarioMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout painelDadosLayout = new javax.swing.GroupLayout(painelDados);
         painelDados.setLayout(painelDadosLayout);
         painelDadosLayout.setHorizontalGroup(
@@ -858,12 +852,12 @@ public class Fproduto extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btPesquisaVenda))
                             .addComponent(tbClienteCpfVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDadosLayout.createSequentialGroup()
+                            .addGroup(painelDadosLayout.createSequentialGroup()
                                 .addComponent(tbQuantVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel22)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(calendario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelDadosLayout.setVerticalGroup(
@@ -874,34 +868,33 @@ public class Fproduto extends javax.swing.JFrame {
                     .addComponent(jLabel19)
                     .addComponent(tbClienteNomeVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(painelDadosLayout.createSequentialGroup()
-                        .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20)
-                            .addComponent(tbClienteCpfVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(tbConsultaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btPesquisaVenda))
-                            .addComponent(jLabel18))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tbTituloVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lb2)
-                            .addComponent(tbAutorVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lb3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tbEditoraVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(tbQuantVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel22)))
+                .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(tbClienteCpfVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tbConsultaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btPesquisaVenda))
+                    .addComponent(jLabel18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tbTituloVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb2)
+                    .addComponent(tbAutorVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tbEditoraVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel17)
+                        .addComponent(tbQuantVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel22))
                     .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -987,7 +980,7 @@ public class Fproduto extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGap(0, 396, Short.MAX_VALUE)
         );
 
         abaVendas.addTab("Consulta", jPanel2);
@@ -1309,31 +1302,6 @@ public class Fproduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbTituloActionPerformed
 
-    private void btPesquisaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisaVendaActionPerformed
-
-        Produto pr;
-        if (!(tbConsultaVenda.getText().equals(""))) {
-            try {
-                BDprodutos bd = new BDprodutos();
-                pr = bd.procurarProdutos(tbConsultaVenda.getText());
-                if (pr != null) {
-                    //tbIsbn.setText(String.valueOf(pr.getIsbn()));
-                    tbTituloVenda.setText(pr.getTitulo());
-                    tbAutorVenda.setText(pr.getAutor());
-                    tbEditoraVenda.setText(pr.getEditora());
-                    tbQuantVenda.requestFocusInWindow();
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Cliente nao cadastrado");
-                    habilitarBotoes(false, true, false, false, false, true);
-                }
-            } catch (SQLException ex) {
-            }
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btPesquisaVendaActionPerformed
-
     private void tbAddVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbAddVendaActionPerformed
 
         if (!"".equals(tbTituloVenda.getText())) {
@@ -1402,14 +1370,6 @@ public class Fproduto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tbFinalizarVendaActionPerformed
 
-    private void tbConsultaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbConsultaVendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbConsultaVendaActionPerformed
-
-    private void tbEditoraVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbEditoraVendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbEditoraVendaActionPerformed
-
     private void tbEstanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbEstanteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tbEstanteActionPerformed
@@ -1427,6 +1387,39 @@ public class Fproduto extends javax.swing.JFrame {
 
 // TODO add your handling code here:
     }//GEN-LAST:event_calendarioMouseClicked
+
+    private void tbEditoraVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbEditoraVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbEditoraVendaActionPerformed
+
+    private void btPesquisaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisaVendaActionPerformed
+
+        Produto pr;
+        if (!(tbConsultaVenda.getText().equals(""))) {
+            try {
+                BDprodutos bd = new BDprodutos();
+                pr = bd.procurarProdutos(tbConsultaVenda.getText());
+                if (pr != null) {
+                    //tbIsbn.setText(String.valueOf(pr.getIsbn()));
+                    tbTituloVenda.setText(pr.getTitulo());
+                    tbAutorVenda.setText(pr.getAutor());
+                    tbEditoraVenda.setText(pr.getEditora());
+                    tbQuantVenda.requestFocusInWindow();
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Cliente nao cadastrado");
+                    habilitarBotoes(false, true, false, false, false, true);
+                }
+            } catch (SQLException ex) {
+            }
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btPesquisaVendaActionPerformed
+
+    private void tbConsultaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbConsultaVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbConsultaVendaActionPerformed
 
     /**
      * @param args the command line arguments

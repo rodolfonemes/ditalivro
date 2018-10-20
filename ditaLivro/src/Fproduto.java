@@ -12,28 +12,28 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
 public class Fproduto extends javax.swing.JFrame {
-
+    
     int contador = 100;
     String texto = null;
     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-
+    
     public class DocumentoLimitado extends PlainDocument {
-
+        
         private int tamanhoMax = 10;
-
+        
         public DocumentoLimitado(int tamanhoMax) {
             this.tamanhoMax = tamanhoMax;
         }
-
+        
         public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
-
+            
             if (str == null) {
                 return;
             }
-
+            
             String stringAntiga = getText(0, getLength());
             int tamanhoNovo = stringAntiga.length() + str.length();
-
+            
             if (tamanhoNovo <= tamanhoMax) {
                 super.insertString(offset, str, attr);
             } else {
@@ -41,7 +41,7 @@ public class Fproduto extends javax.swing.JFrame {
             }
         }
     }
-
+    
     public Fproduto() {
         initComponents();
         camposBloqueados();
@@ -57,18 +57,18 @@ public class Fproduto extends javax.swing.JFrame {
         //int tamanhoDoTexto = texto.length();
         //lbContador.setText(String.valueOf(tamanhoDoTexto));
     }
-
+    
     void habilitarBotoes(boolean novo, boolean salvar, boolean editar, boolean atualizar, boolean excluir, boolean sair) {
-
+        
         btNovo.setEnabled(novo);
         btSalvar.setEnabled(salvar);
         btEditar.setEnabled(editar);
         btAtualizar.setEnabled(atualizar);
         btExcluir.setEnabled(excluir);
         btCancelar.setEnabled(sair);
-
+        
     }
-
+    
     void camposBloqueados() {
         tbIsbn.setEnabled(false);
         tbTitulo.setEnabled(false);
@@ -80,10 +80,10 @@ public class Fproduto extends javax.swing.JFrame {
         tbDescricao.setEnabled(false);
         tbQuantidade.setEnabled(false);
         tbValor.setEnabled(false);
-
+        
         habilitarBotoes(true, false, false, false, false, true);
     }
-
+    
     void camposDesbloqueados() {
         tbIsbn.setEnabled(true);
         tbTitulo.setEnabled(true);
@@ -96,22 +96,22 @@ public class Fproduto extends javax.swing.JFrame {
         tbQuantidade.setEnabled(true);
         tbValor.setEnabled(true);
     }
-
+    
     void camposDefalut() {
-
+        
         tbAno.setText("0");
         tbQuantidade.setText("0");
         tbValor.setText("0");
-
+        
         habilitarBotoes(true, false, false, false, false, true);
     }
-
+    
     void contadorCaracteres() {
         String texto = tbDescricao.getText();
         int tamanhoDoTexto = 400 - texto.length();
         lbContador.setText(String.valueOf(tamanhoDoTexto));
     }
-
+    
     void limparCampos() {
         tbIsbn.setText(null);
         tbTitulo.setText(null);
@@ -129,7 +129,7 @@ public class Fproduto extends javax.swing.JFrame {
         Tabela2.updateUI();
         habilitarBotoes(true, false, false, false, false, true);
     }
-
+    
     private void carregarFormulario(Produto pro) {
         tbIsbn.setText(pro.getIsbn());
         tbTitulo.setText(pro.getTitulo());
@@ -142,13 +142,13 @@ public class Fproduto extends javax.swing.JFrame {
         tbQuantidade.setText(String.valueOf(pro.getQuant()));
         tbDescricao.setText(pro.getDescricao());
     }
-
+    
     private void carregarFormulario(Usuario pro) {
         tbUsuarioCadastro.setText(String.valueOf(pro.getUsuario()));
         tbSenhaCadastro.setText(pro.getSenha());
-
+        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -263,7 +263,7 @@ public class Fproduto extends javax.swing.JFrame {
         btRemoverVenda = new javax.swing.JButton();
         tbFinalizarVenda = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        tbCadastro = new javax.swing.JButton();
+        btCadastro = new javax.swing.JButton();
         usuario = new javax.swing.JLayeredPane();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -1012,17 +1012,17 @@ public class Fproduto extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Vendas", abaVendas);
 
-        tbCadastro.setText("Cadastro de usuario");
-        tbCadastro.addActionListener(new java.awt.event.ActionListener() {
+        btCadastro.setText("Cadastro de usuario");
+        btCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbCadastroActionPerformed(evt);
+                btCadastroActionPerformed(evt);
             }
         });
 
         tela.setLayer(btLogoff, javax.swing.JLayeredPane.DEFAULT_LAYER);
         tela.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         tela.setLayer(jTabbedPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        tela.setLayer(tbCadastro, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        tela.setLayer(btCadastro, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout telaLayout = new javax.swing.GroupLayout(tela);
         tela.setLayout(telaLayout);
@@ -1030,7 +1030,7 @@ public class Fproduto extends javax.swing.JFrame {
             telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, telaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tbCadastro)
+                .addComponent(btCadastro)
                 .addGap(18, 18, 18)
                 .addComponent(btLogoff)
                 .addGap(25, 25, 25))
@@ -1049,7 +1049,7 @@ public class Fproduto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(telaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btLogoff)
-                    .addComponent(tbCadastro))
+                    .addComponent(btCadastro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1251,9 +1251,9 @@ public class Fproduto extends javax.swing.JFrame {
         tbIsbn.requestFocusInWindow();
         contadorCaracteres();
         habilitarBotoes(false, true, false, false, false, true);
-
+        
     }
-
+    
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {
         Produto pr;
         if (!(tbIsbn.getText().equals("")) & !(tbAno.getText().equals(""))
@@ -1264,7 +1264,7 @@ public class Fproduto extends javax.swing.JFrame {
                 if (pr != null) {
                     JOptionPane.showMessageDialog(null, "codigo ja cadastrado");
                 } else {
-
+                    
                     pr = new Produto();
                     //if(pr.getIsbn()!= null){
                     pr.setIsbn(tbIsbn.getText());
@@ -1277,7 +1277,7 @@ public class Fproduto extends javax.swing.JFrame {
                     pr.setDescricao(tbDescricao.getText());
                     pr.setValor(Double.parseDouble(tbValor.getText()));
                     pr.setQuant(Integer.parseInt(tbQuantidade.getText()));
-
+                    
                     BDprodutos bdpr = new BDprodutos();
                     try {
                         bdpr.adicionarProduto(pr);
@@ -1288,7 +1288,7 @@ public class Fproduto extends javax.swing.JFrame {
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(null, "Erro ao gravar");
                     }
-
+                    
                 }
             } catch (SQLException ex) {
             }
@@ -1310,7 +1310,7 @@ public class Fproduto extends javax.swing.JFrame {
         model.setNumRows(0);
         for (Produto listaProduto1 : listaProduto) {
             pr1 = listaProduto1;
-
+            
             model.addRow(new Object[]{
                 pr1.getIsbn(),
                 pr1.getTitulo(),
@@ -1336,19 +1336,19 @@ public class Fproduto extends javax.swing.JFrame {
         pro = new Produto();
         try {
             pro = bd.procurarProdutos(iCodigo);
-
+            
             carregarFormulario(pro);
             camposBloqueados();
             contadorCaracteres();
             habilitarBotoes(false, false, true, false, false, true);
         } catch (SQLException ex) {
-
+            
         }
         //jTabbedPane1.setSelectedIndex(1);
         abaConsulta.setSelectedIndex(1);
 
     }//GEN-LAST:event_Tabela2MouseClicked
-
+    
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         camposDesbloqueados();
@@ -1372,7 +1372,7 @@ public class Fproduto extends javax.swing.JFrame {
         pr.setDescricao(tbDescricao.getText());
         pr.setValor(Double.parseDouble(tbValor.getText()));
         pr.setQuant(Integer.parseInt(tbQuantidade.getText()));
-
+        
         BDprodutos bdpr = new BDprodutos();
         try {
             bdpr.atualizarProduto(pr);
@@ -1383,13 +1383,13 @@ public class Fproduto extends javax.swing.JFrame {
             tbIsbn.requestFocus(); // passa o foco para o campo codigo
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir registro");
-
+            
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btAtualizarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-
+        
         if (tbIsbn.getText().equals("")) {
             habilitarBotoes(true, false, false, false, false, true);
             camposBloqueados();
@@ -1406,6 +1406,7 @@ public class Fproduto extends javax.swing.JFrame {
         tela.setVisible(true);
         login.setVisible(false);
         usuario.setVisible(false);
+        btCadastro.setVisible(false);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
@@ -1414,33 +1415,37 @@ public class Fproduto extends javax.swing.JFrame {
         Usuario pr;
         String usuario, usuarioBanco;
         String senha, senhaBanco;
-
+        
         if (!(tbUsuario.getText().equals(""))) {
             try {
                 BDusuario bd = new BDusuario();
                 pr = bd.procurarUsuario(tbUsuario.getText());
                 if (pr != null) {
-
+                    
                     usuario = tbUsuario.getText();
                     senha = tbSenha.getText();
-
+                    
                     if (senha.equals(pr.getSenha()) & usuario.equals(pr.getUsuario())) {
                         tela.setVisible(true);
                         login.setVisible(false);
                         tbUsuario.setText(null);
                         tbSenha.setText(null);
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "falha");
+                        
+                    
+                    if ("326".equals(pr.getUsuario())) {
+                        btCadastro.setVisible(true);
                     }
-
+                    }else {
+                        JOptionPane.showMessageDialog(null, "login ou senha invalidos");
+                    }
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "login ou senha invalidos");
-
+                    
                 }
             } catch (SQLException ex) {
             }
-
+            
         }
 
 //        tela.setVisible(true);
@@ -1481,7 +1486,7 @@ public class Fproduto extends javax.swing.JFrame {
                     tbDescricao.setText(pr.getDescricao());
                     tbQuantidade.setText(String.valueOf(pr.getQuant()));
                     tbValor.setText(String.valueOf(pr.getValor()));
-
+                    
                     habilitarBotoes(false, false, true, false, true, true);
                 } else {
                     JOptionPane.showMessageDialog(null, "Cliente nao cadastrado");
@@ -1501,22 +1506,22 @@ public class Fproduto extends javax.swing.JFrame {
     }//GEN-LAST:event_tbTituloActionPerformed
 
     private void tbAddVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbAddVendaActionPerformed
-
+        
         if (!"".equals(tbTituloVenda.getText())) {
-
+            
             if (!"".equals(tbQuantVenda.getText())) {
                 texto = formato.format(calendario.getDate());
-
+                
                 BDprodutos bd;
                 List<Produto> listaProduto;
                 bd = new BDprodutos();
                 listaProduto = bd.consultarProduto(tbConsultaVenda.getText());
                 DefaultTableModel model = (DefaultTableModel) tabelaVenda.getModel();
-
+                
                 Object[] dados = {contador, tbConsultaVenda.getText(), tbTituloVenda.getText(),
                     tbAutorVenda.getText(), tbEditoraVenda.getText(), tbQuantVenda.getText(), texto};
                 model.addRow(dados);
-
+                
                 contador++;
                 tbConsultaVenda.setText(null);
                 tbTituloVenda.setText(null);
@@ -1524,23 +1529,23 @@ public class Fproduto extends javax.swing.JFrame {
                 tbEditoraVenda.setText(null);
                 tbQuantVenda.setText(null);
                 tbConsultaVenda.requestFocusInWindow();
-
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Campo Quantidade é obriatorio");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Livro não localizado," + "\n" + "Favor digitar o ISBN e clicar me Pesquisar");
         }
-
+        
 
     }//GEN-LAST:event_tbAddVendaActionPerformed
 
     private void btRemoverVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverVendaActionPerformed
         if (tabelaVenda.getSelectedRow() != -1) {
-
+            
             DefaultTableModel model = (DefaultTableModel) tabelaVenda.getModel();
             model.removeRow(tabelaVenda.getSelectedRow());
-
+            
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um item para excluir");
         }
@@ -1577,7 +1582,7 @@ public class Fproduto extends javax.swing.JFrame {
         bdpr.excluirProduto(Integer.valueOf(tbIsbn.getText())); // TODO add your handling code here:
         limparCampos();
         camposBloqueados();
-
+        
         tbIsbn.requestFocus(); // passa o foco para o campo codigo
     }//GEN-LAST:event_btExcluirActionPerformed
 
@@ -1591,7 +1596,7 @@ public class Fproduto extends javax.swing.JFrame {
     }//GEN-LAST:event_tbEditoraVendaActionPerformed
 
     private void btPesquisaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisaVendaActionPerformed
-
+        
         Produto pr;
         if (!(tbConsultaVenda.getText().equals(""))) {
             try {
@@ -1603,7 +1608,7 @@ public class Fproduto extends javax.swing.JFrame {
                     tbAutorVenda.setText(pr.getAutor());
                     tbEditoraVenda.setText(pr.getEditora());
                     tbQuantVenda.requestFocusInWindow();
-
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "Cliente nao cadastrado");
                     habilitarBotoes(false, true, false, false, false, true);
@@ -1625,7 +1630,7 @@ public class Fproduto extends javax.swing.JFrame {
 
     private void btConsultarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarCadastroActionPerformed
         Usuario pr;
-
+        
         BDusuario bd;
         List<Usuario> listaUsuario;
         Usuario pr1;
@@ -1635,7 +1640,7 @@ public class Fproduto extends javax.swing.JFrame {
         model.setNumRows(0);
         for (Usuario lisUsuario : listaUsuario) {
             pr1 = lisUsuario;
-
+            
             model.addRow(new Object[]{
                 pr1.getUsuario()
             }
@@ -1643,15 +1648,15 @@ public class Fproduto extends javax.swing.JFrame {
         }
         btCadatroNovo.setEnabled(true);
         btCadastroSalvar.setEnabled(false);
-
+        
 
     }//GEN-LAST:event_btConsultarCadastroActionPerformed
 
-    private void tbCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbCadastroActionPerformed
+    private void btCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastroActionPerformed
         tela.setVisible(false);
         login.setVisible(false);
         usuario.setVisible(true);
-    }//GEN-LAST:event_tbCadastroActionPerformed
+    }//GEN-LAST:event_btCadastroActionPerformed
 
     private void tabelaUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaUsuarioMouseClicked
         BDusuario bd;
@@ -1662,11 +1667,11 @@ public class Fproduto extends javax.swing.JFrame {
         pro = new Usuario();
         try {
             pro = bd.procurarUsuario(iCodigo);
-
+            
             carregarFormulario(pro);
-
+            
         } catch (SQLException ex) {
-
+            
         }
         tbSenhaCadastro.setEnabled(true);
         btAtualizarCadastro.setEnabled(true);
@@ -1674,19 +1679,19 @@ public class Fproduto extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelaUsuarioMouseClicked
 
     private void btAtualizarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarCadastroActionPerformed
-
+        
         Usuario pr;
         pr = new Usuario();
         pr.setUsuario(tbUsuarioCadastro.getText());
         pr.setSenha(tbSenhaCadastro.getText());
-
+        
         BDusuario bdpr = new BDusuario();
         try {
             bdpr.atualizarUsuario(pr);
             //JOptionPane.showMessageDialog(null, "Registro gravado com sucesso");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir registro");
-
+            
         }
         tbUsuarioCadastro.setText("");
         tbSenhaCadastro.setText("");
@@ -1711,18 +1716,16 @@ public class Fproduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btCadatroNovoActionPerformed
 
     private void btCadastroSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastroSalvarActionPerformed
-       
         
         Usuario pr;
         pr = new Usuario();
-      
         
-         BDusuario bdpr = new BDusuario();
+        BDusuario bdpr = new BDusuario();
         
         if (!"".equals(tbUsuarioCadastro.getText()) & !"".equals(tbSenhaCadastro.getText())) {
-          
+            
             pr.setUsuario(tbUsuarioCadastro.getText());
-        pr.setSenha(tbSenhaCadastro.getText());
+            pr.setSenha(tbSenhaCadastro.getText());
             //BDusuario bdpr = new BDusuario();
             try {
                 bdpr.adicionarUsuario(pr);
@@ -1736,11 +1739,11 @@ public class Fproduto extends javax.swing.JFrame {
             tbSenhaCadastro.setEnabled(false);
             btCadastroSalvar.setEnabled(false);
             btCadatroNovo.setEnabled(true);
-         
-                    }else {
+            
+        } else {
             JOptionPane.showMessageDialog(null, "Cpf e Senha são obrigatorios para cadastro");
         }
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_btCadastroSalvarActionPerformed
 
@@ -1781,6 +1784,7 @@ public class Fproduto extends javax.swing.JFrame {
     private javax.swing.JTabbedPane abaVendas;
     private javax.swing.JButton btAtualizar;
     private javax.swing.JButton btAtualizarCadastro;
+    private javax.swing.JButton btCadastro;
     private javax.swing.JButton btCadastroSair;
     private javax.swing.JButton btCadastroSalvar;
     private javax.swing.JButton btCadatroNovo;
@@ -1876,7 +1880,6 @@ public class Fproduto extends javax.swing.JFrame {
     private javax.swing.JTextField tbAno;
     private javax.swing.JTextField tbAutor;
     private javax.swing.JTextField tbAutorVenda;
-    private javax.swing.JButton tbCadastro;
     private javax.swing.JFormattedTextField tbClienteCpfVenda;
     private javax.swing.JTextField tbClienteNomeVenda;
     private javax.swing.JTextField tbConsultaVenda;

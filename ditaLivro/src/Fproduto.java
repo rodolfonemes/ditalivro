@@ -1208,7 +1208,7 @@ public class Fproduto extends javax.swing.JFrame {
                                 .addComponent(btCadastroSalvar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btCadastroSair))
-                            .addComponent(checkSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(checkSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(usuarioLayout.createSequentialGroup()
                         .addGap(232, 232, 232)
                         .addGroup(usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1217,7 +1217,7 @@ public class Fproduto extends javax.swing.JFrame {
                                 .addComponent(btConsultarCadastro)
                                 .addGap(50, 50, 50)
                                 .addComponent(btAtualizarCadastro)))))
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
         usuarioLayout.setVerticalGroup(
             usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

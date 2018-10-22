@@ -18,14 +18,16 @@ PreparedStatement pstmt;
         String sInsert;
         sInsert = "INSERT INTO usuario("
                 + "cpf, "
-                + "senha) "
-                + " VALUES(?, ?)";
+                + "senha,"
+                + "nome ) "
+                + " VALUES(?, ?, ?)";
         //JOptionPane.showMessageDialog(null, sInsert);
         try {
             con = CriarConexao.getConexao();
             pstmt = con.prepareStatement(sInsert);
             pstmt.setString(1, p.getUsuario());
             pstmt.setString(2, p.getSenha());
+            pstmt.setString(3, p.getNome());
             pstmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro gravado com sucesso");
         } catch (SQLException ex) {
@@ -38,14 +40,16 @@ PreparedStatement pstmt;
         String sInsert;        
         
         sInsert = "update usuario set  "
-                + "senha = ? "
+                + "senha = ?,"
+                + "nome = ? "
                 + "where cpf = ?";
         //JOptionPane.showMessageDialog(null, sInsert);
         try {
             con = CriarConexao.getConexao();
             pstmt = con.prepareStatement(sInsert);
             pstmt.setString(1, p.getSenha());
-            pstmt.setString(2, p.getUsuario());
+            pstmt.setString(2, p.getNome());
+            pstmt.setString(3, p.getUsuario());
             pstmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Cadastro atualizado");
         } catch (SQLException ex) {
@@ -69,6 +73,7 @@ PreparedStatement pstmt;
                 pr = new Usuario();
                 pr.setSenha(rs.getString("senha"));
                 pr.setUsuario(rs.getString("cpf"));
+                pr.setNome(rs.getString("nome"));
                 
                return pr;
             } else {
@@ -100,6 +105,7 @@ PreparedStatement pstmt;
                 pr = new Usuario();
                 pr.setUsuario(rs.getString("cpf"));
                 pr.setSenha(rs.getString("senha"));
+                pr.setNome(rs.getString("nome"));
                 listaUsuario.add(pr);
                 //JOptionPane.showMessageDialog(null, "nome " + op.getNome());
             }

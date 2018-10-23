@@ -52,7 +52,7 @@ public class Fproduto extends javax.swing.JFrame {
         tbSenhaCadastro.setEnabled(false);
         btAtualizarCadastro.setEnabled(false);
         tbNomeCadastro.setEnabled(false);
-       
+               
     }
     
     void habilitarBotoes(boolean novo, boolean salvar, boolean editar, boolean atualizar, boolean excluir, boolean sair) {
@@ -145,6 +145,8 @@ public class Fproduto extends javax.swing.JFrame {
         tbUsuarioCadastro.setText(pro.getUsuario());
         tbSenhaCadastro.setText(pro.getSenha());
         tbNomeCadastro.setText(pro.getNome());
+        checkSenha.setSelected(pro.isTrocaSenha());
+        
         
     }
     
@@ -278,8 +280,15 @@ public class Fproduto extends javax.swing.JFrame {
         tbNomeCadastro = new javax.swing.JTextField();
         tbUsuarioCadastro = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
         tbSenhaCadastro = new javax.swing.JPasswordField();
+        jLabel24 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        trocaSenha = new javax.swing.JLayeredPane();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        lbUsuarioAlterar = new javax.swing.JLabel();
+        tbSenhaAlterar = new javax.swing.JPasswordField();
+        btAlterarSenha = new javax.swing.JButton();
 
         jMenu3.setText("jMenu3");
 
@@ -1137,13 +1146,13 @@ public class Fproduto extends javax.swing.JFrame {
 
         jLabel23.setText("Cpf");
 
-        jLabel24.setText("Senha");
-
         tbSenhaCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbSenhaCadastroActionPerformed(evt);
             }
         });
+
+        jLabel24.setText("Senha");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -1152,16 +1161,16 @@ public class Fproduto extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel23)
+                        .addComponent(jLabel25)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addComponent(tbNomeCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel24)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(tbSenhaCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel25)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel23)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tbNomeCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel24)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addComponent(tbUsuarioCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -1175,13 +1184,20 @@ public class Fproduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tbUsuarioCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24))
+                    .addComponent(jLabel23))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tbSenhaCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23))
+                    .addComponent(jLabel24))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         usuario.setLayer(checkSenha, javax.swing.JLayeredPane.DEFAULT_LAYER);
         usuario.setLayer(btConsultarCadastro, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -1191,6 +1207,7 @@ public class Fproduto extends javax.swing.JFrame {
         usuario.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         usuario.setLayer(btCadatroNovo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         usuario.setLayer(jPanel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        usuario.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout usuarioLayout = new javax.swing.GroupLayout(usuario);
         usuario.setLayout(usuarioLayout);
@@ -1216,8 +1233,10 @@ public class Fproduto extends javax.swing.JFrame {
                             .addGroup(usuarioLayout.createSequentialGroup()
                                 .addComponent(btConsultarCadastro)
                                 .addGap(50, 50, 50)
-                                .addComponent(btAtualizarCadastro)))))
-                .addContainerGap(159, Short.MAX_VALUE))
+                                .addComponent(btAtualizarCadastro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                                .addComponent(jButton1)))))
+                .addGap(76, 76, 76))
         );
         usuarioLayout.setVerticalGroup(
             usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1234,9 +1253,69 @@ public class Fproduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btConsultarCadastro)
-                    .addComponent(btAtualizarCadastro))
+                    .addComponent(btAtualizarCadastro)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jLabel26.setText("CPF");
+
+        jLabel27.setText("Nova Senha");
+
+        lbUsuarioAlterar.setText(".");
+
+        btAlterarSenha.setText("Alterar senha");
+        btAlterarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAlterarSenhaActionPerformed(evt);
+            }
+        });
+
+        trocaSenha.setLayer(jLabel26, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        trocaSenha.setLayer(jLabel27, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        trocaSenha.setLayer(lbUsuarioAlterar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        trocaSenha.setLayer(tbSenhaAlterar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        trocaSenha.setLayer(btAlterarSenha, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout trocaSenhaLayout = new javax.swing.GroupLayout(trocaSenha);
+        trocaSenha.setLayout(trocaSenhaLayout);
+        trocaSenhaLayout.setHorizontalGroup(
+            trocaSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(trocaSenhaLayout.createSequentialGroup()
+                .addGroup(trocaSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(trocaSenhaLayout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addGroup(trocaSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel27)
+                            .addComponent(jLabel26))
+                        .addGap(18, 18, 18)
+                        .addGroup(trocaSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tbSenhaAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                            .addComponent(lbUsuarioAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(trocaSenhaLayout.createSequentialGroup()
+                        .addGap(242, 242, 242)
+                        .addComponent(btAlterarSenha)))
+                .addContainerGap(332, Short.MAX_VALUE))
+        );
+        trocaSenhaLayout.setVerticalGroup(
+            trocaSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(trocaSenhaLayout.createSequentialGroup()
+                .addGroup(trocaSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(trocaSenhaLayout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(lbUsuarioAlterar)
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, trocaSenhaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel26)
+                        .addGap(18, 18, 18)))
+                .addGroup(trocaSenhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(tbSenhaAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btAlterarSenha)
+                .addContainerGap(320, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1257,6 +1336,8 @@ public class Fproduto extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(trocaSenha))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1274,6 +1355,8 @@ public class Fproduto extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(trocaSenha))
         );
 
         pack();
@@ -1441,6 +1524,7 @@ public class Fproduto extends javax.swing.JFrame {
         tela.setVisible(true);
         login.setVisible(false);
         usuario.setVisible(false);
+        trocaSenha.setVisible(false);
         btCadastro.setVisible(true);
 
         // TODO add your handling code here:
@@ -1461,18 +1545,38 @@ public class Fproduto extends javax.swing.JFrame {
                     usuario = tbUsuario.getText();
                     senha = tbSenha.getText();
                     
+                    
+                        
                     if (senha.equals(pr.getSenha()) & usuario.equals(pr.getUsuario())) {
+                                               
+                        if ("326".equals(pr.getUsuario())) {
+                            JOptionPane.showMessageDialog(null, "326");
+                        btCadastro.setVisible(true);
+                    }
+                        
+                        if(pr.isTrocaSenha()== true){
+                         
+                        tela.setVisible(false);
+                        login.setVisible(false);
+                        trocaSenha.setVisible(true);
+                        lbUsuarioAlterar.setText(tbUsuario.getText());
+                        JOptionPane.showMessageDialog(null, "Favor trocar sua senha");
+                        }
+                        
+                        else{
+                        
                         tela.setVisible(true);
                         login.setVisible(false);
                         tbUsuario.setText(null);
                         tbSenha.setText(null);
                         
+                        }
+                        
                     
-                    if ("326".equals(pr.getUsuario())) {
-                        btCadastro.setVisible(true);
-                    }
+                    
+                    
                     }else {
-                        JOptionPane.showMessageDialog(null, "login ou senha invalidos");
+                        JOptionPane.showMessageDialog(null, "login ou senha invalidos ");
                     }
                     
                 } else {
@@ -1725,11 +1829,12 @@ public class Fproduto extends javax.swing.JFrame {
         pr.setUsuario(tbUsuarioCadastro.getText());
         pr.setSenha(tbSenhaCadastro.getText());
         pr.setNome(tbNomeCadastro.getText());
+        pr.setTrocaSenha(checkSenha.isSelected());
         
         BDusuario bdpr = new BDusuario();
         try {
             bdpr.atualizarUsuario(pr);
-            //JOptionPane.showMessageDialog(null, "Registro gravado com sucesso");
+            JOptionPane.showMessageDialog(null, "Usuario atualizado com sucesso");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir registro");
             
@@ -1772,6 +1877,7 @@ public class Fproduto extends javax.swing.JFrame {
             pr.setUsuario(tbUsuarioCadastro.getText());
             pr.setSenha(tbSenhaCadastro.getText());
             pr.setNome(tbNomeCadastro.getText());
+            pr.setTrocaSenha(checkSenha.isSelected());
             //BDusuario bdpr = new BDusuario();
             try {
                 bdpr.adicionarUsuario(pr);
@@ -1816,6 +1922,48 @@ public class Fproduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbNomeCadastroActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+      if(checkSenha.isSelected()){
+          lbUsuarioAlterar.setText(tbUsuarioCadastro.getText());
+          tela.setVisible(false);
+          login.setVisible(false);
+          usuario.setVisible(false);
+          trocaSenha.setVisible(true);
+          
+                  
+JOptionPane.showMessageDialog(null, "caixa marcada");
+checkSenha.setSelected(false);
+}else{
+JOptionPane.showMessageDialog(null, "caixa desmarcada");
+}
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarSenhaActionPerformed
+
+Usuario pr;
+        pr = new Usuario();
+        pr.setUsuario(lbUsuarioAlterar.getText());
+        pr.setSenha(tbSenhaAlterar.getText());
+        
+          
+        BDusuario bdpr = new BDusuario();
+        try {
+            bdpr.atualizarUsuario(pr);
+            JOptionPane.showMessageDialog(null, "Senha alterada com sucesso");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir registro");
+            
+        }
+        lbUsuarioAlterar.setText(".");
+        tbSenhaAlterar.setText("");
+        trocaSenha.setVisible(false);
+        tela.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btAlterarSenhaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1836,6 +1984,7 @@ public class Fproduto extends javax.swing.JFrame {
     private javax.swing.JTable Tabela2;
     private javax.swing.JTabbedPane abaConsulta;
     private javax.swing.JTabbedPane abaVendas;
+    private javax.swing.JButton btAlterarSenha;
     private javax.swing.JButton btAtualizar;
     private javax.swing.JButton btAtualizarCadastro;
     private javax.swing.JButton btCadastro;
@@ -1857,6 +2006,7 @@ public class Fproduto extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser calendario;
     private javax.swing.JCheckBox checkSenha;
     private javax.swing.JPanel consulta;
+    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JLabel jLabel1;
@@ -1877,6 +2027,8 @@ public class Fproduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1927,6 +2079,7 @@ public class Fproduto extends javax.swing.JFrame {
     private javax.swing.JLabel lb3;
     private javax.swing.JLabel lbContador;
     private javax.swing.JLabel lbContadorVendas;
+    private javax.swing.JLabel lbUsuarioAlterar;
     private javax.swing.JLayeredPane login;
     private javax.swing.JPanel painelDados;
     private javax.swing.JPanel painelVendas;
@@ -1949,6 +2102,7 @@ public class Fproduto extends javax.swing.JFrame {
     private javax.swing.JTextField tbQuantVenda;
     private javax.swing.JTextField tbQuantidade;
     private javax.swing.JPasswordField tbSenha;
+    private javax.swing.JPasswordField tbSenhaAlterar;
     private javax.swing.JPasswordField tbSenhaCadastro;
     private javax.swing.JTextField tbTipo;
     private javax.swing.JTextField tbTitulo;
@@ -1958,6 +2112,7 @@ public class Fproduto extends javax.swing.JFrame {
     private javax.swing.JTextField tbValor;
     private javax.swing.JLayeredPane tela;
     private javax.swing.JTextField tfConsulta2;
+    private javax.swing.JLayeredPane trocaSenha;
     private javax.swing.JLayeredPane usuario;
     // End of variables declaration//GEN-END:variables
 

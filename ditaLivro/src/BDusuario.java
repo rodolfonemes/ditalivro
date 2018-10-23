@@ -19,8 +19,9 @@ PreparedStatement pstmt;
         sInsert = "INSERT INTO usuario("
                 + "cpf, "
                 + "senha,"
-                + "nome ) "
-                + " VALUES(?, ?, ?)";
+                + "nome, "
+                + "trocarSenha) "
+                + " VALUES(?, ?, ?, ?)";
         //JOptionPane.showMessageDialog(null, sInsert);
         try {
             con = CriarConexao.getConexao();
@@ -28,6 +29,7 @@ PreparedStatement pstmt;
             pstmt.setString(1, p.getUsuario());
             pstmt.setString(2, p.getSenha());
             pstmt.setString(3, p.getNome());
+            pstmt.setBoolean(4, p.isTrocaSenha());
             pstmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro gravado com sucesso");
         } catch (SQLException ex) {
@@ -40,8 +42,9 @@ PreparedStatement pstmt;
         String sInsert;        
         
         sInsert = "update usuario set  "
-                + "senha = ?,"
-                + "nome = ? "
+                + "senha = ?, "
+                + "nome = ?, "
+                + "trocarSenha = ? "
                 + "where cpf = ?";
         //JOptionPane.showMessageDialog(null, sInsert);
         try {
@@ -49,9 +52,10 @@ PreparedStatement pstmt;
             pstmt = con.prepareStatement(sInsert);
             pstmt.setString(1, p.getSenha());
             pstmt.setString(2, p.getNome());
-            pstmt.setString(3, p.getUsuario());
+            pstmt.setBoolean(3, p.isTrocaSenha());
+            pstmt.setString(4, p.getUsuario());
             pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Cadastro atualizado");
+                      //JOptionPane.showMessageDialog(null, "Cadastro atualizado");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao gravar cliente" + ex.getMessage());
         }
@@ -74,6 +78,7 @@ PreparedStatement pstmt;
                 pr.setSenha(rs.getString("senha"));
                 pr.setUsuario(rs.getString("cpf"));
                 pr.setNome(rs.getString("nome"));
+                pr.setTrocaSenha(rs.getBoolean("trocarSenha"));
                 
                return pr;
             } else {
@@ -106,6 +111,7 @@ PreparedStatement pstmt;
                 pr.setUsuario(rs.getString("cpf"));
                 pr.setSenha(rs.getString("senha"));
                 pr.setNome(rs.getString("nome"));
+                pr.setTrocaSenha(rs.getBoolean("trocarSenha"));
                 listaUsuario.add(pr);
                 //JOptionPane.showMessageDialog(null, "nome " + op.getNome());
             }

@@ -1383,13 +1383,11 @@
                                   <Component id="btConsultarCadastro" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                                   <Component id="btAtualizarCadastro" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="121" max="32767" attributes="0"/>
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                  <EmptySpace pref="165" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1410,7 +1408,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btConsultarCadastro" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btAtualizarCadastro" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane4" min="-2" pref="227" max="-2" attributes="0"/>
@@ -1583,14 +1580,6 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-          </Events>
-        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JLayeredPane" name="trocaSenha">

@@ -282,7 +282,6 @@ public class Fproduto extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         tbSenhaCadastro = new javax.swing.JPasswordField();
         jLabel24 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         trocaSenha = new javax.swing.JLayeredPane();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
@@ -1192,13 +1191,6 @@ public class Fproduto extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         usuario.setLayer(checkSenha, javax.swing.JLayeredPane.DEFAULT_LAYER);
         usuario.setLayer(btConsultarCadastro, javax.swing.JLayeredPane.DEFAULT_LAYER);
         usuario.setLayer(btCadastroSalvar, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -1207,7 +1199,6 @@ public class Fproduto extends javax.swing.JFrame {
         usuario.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         usuario.setLayer(btCadatroNovo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         usuario.setLayer(jPanel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        usuario.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout usuarioLayout = new javax.swing.GroupLayout(usuario);
         usuario.setLayout(usuarioLayout);
@@ -1233,10 +1224,8 @@ public class Fproduto extends javax.swing.JFrame {
                             .addGroup(usuarioLayout.createSequentialGroup()
                                 .addComponent(btConsultarCadastro)
                                 .addGap(50, 50, 50)
-                                .addComponent(btAtualizarCadastro)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
-                                .addComponent(jButton1)))))
-                .addGap(76, 76, 76))
+                                .addComponent(btAtualizarCadastro)))))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         usuarioLayout.setVerticalGroup(
             usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1253,8 +1242,7 @@ public class Fproduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(usuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btConsultarCadastro)
-                    .addComponent(btAtualizarCadastro)
-                    .addComponent(jButton1))
+                    .addComponent(btAtualizarCadastro))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1550,7 +1538,7 @@ public class Fproduto extends javax.swing.JFrame {
                     if (senha.equals(pr.getSenha()) & usuario.equals(pr.getUsuario())) {
                                                
                         if ("326".equals(pr.getUsuario())) {
-                            JOptionPane.showMessageDialog(null, "326");
+                            
                         btCadastro.setVisible(true);
                     }
                         
@@ -1569,6 +1557,7 @@ public class Fproduto extends javax.swing.JFrame {
                         login.setVisible(false);
                         tbUsuario.setText(null);
                         tbSenha.setText(null);
+                        JOptionPane.showMessageDialog(null,"Bem vindo(a) " + pr.getNome() );
                         
                         }
                         
@@ -1587,6 +1576,8 @@ public class Fproduto extends javax.swing.JFrame {
             }
             
         }
+        tbUsuario.setText("");
+        tbSenha.setText("");
 
 //        tela.setVisible(true);
 //        login.setVisible(false);
@@ -1922,25 +1913,6 @@ public class Fproduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbNomeCadastroActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-      if(checkSenha.isSelected()){
-          lbUsuarioAlterar.setText(tbUsuarioCadastro.getText());
-          tela.setVisible(false);
-          login.setVisible(false);
-          usuario.setVisible(false);
-          trocaSenha.setVisible(true);
-          
-                  
-JOptionPane.showMessageDialog(null, "caixa marcada");
-checkSenha.setSelected(false);
-}else{
-JOptionPane.showMessageDialog(null, "caixa desmarcada");
-}
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btAlterarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarSenhaActionPerformed
 
 Usuario pr;
@@ -1960,7 +1932,7 @@ Usuario pr;
         lbUsuarioAlterar.setText(".");
         tbSenhaAlterar.setText("");
         trocaSenha.setVisible(false);
-        tela.setVisible(true);
+        login.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_btAlterarSenhaActionPerformed
 
@@ -2006,7 +1978,6 @@ Usuario pr;
     private com.toedter.calendar.JDateChooser calendario;
     private javax.swing.JCheckBox checkSenha;
     private javax.swing.JPanel consulta;
-    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JLabel jLabel1;

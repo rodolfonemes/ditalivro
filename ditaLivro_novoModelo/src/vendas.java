@@ -101,7 +101,7 @@ public class vendas extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
+        setResizable(true);
         setTitle("Vendas");
 
         tabelaVenda.setModel(new javax.swing.table.DefaultTableModel(

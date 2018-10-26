@@ -29,9 +29,6 @@ public class login extends javax.swing.JInternalFrame {
         jLabel13 = new javax.swing.JLabel();
         tbUsuario = new javax.swing.JTextField();
 
-        setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
         setTitle("Login");
 
         btLogar.setText("LOGAR");
@@ -53,9 +50,9 @@ public class login extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(205, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel13)
@@ -63,17 +60,16 @@ public class login extends javax.swing.JInternalFrame {
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(tbSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addComponent(btLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(tbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(btLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(318, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
+                .addGap(73, 73, 73)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(tbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -81,9 +77,9 @@ public class login extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(tbSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btLogar)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         pack();
@@ -93,6 +89,9 @@ public class login extends javax.swing.JInternalFrame {
         Usuario pr;
         String usuario;
         String senha;
+        
+        login lo = new login();
+        
         
         if (!(tbUsuario.getText().equals(""))) {
             
@@ -106,13 +105,22 @@ public class login extends javax.swing.JInternalFrame {
                     
                     if (senha.equals(pr.getSenha()) & usuario.equals(pr.getUsuario())) {
                         
+                        if(pr.isTrocaSenha() == true){
+                            this.dispose();
+                            JOptionPane.showMessageDialog(null, "trocar");
+                            trocarSenha ts = new trocarSenha();
+                            menu.desktop.add(ts);
+                            ts.setVisible(true);
+                            trocarSenha.lbTrocaSenhaUsuario.setText(tbUsuario.getText());
+                                                       
+                        }else{
                         if ("326".equals(pr.getUsuario())) {
                             menu.btCadUsuario.setVisible(true);
                         }
                         menu.btTela.setEnabled(true);
                         menu.btVendas.setEnabled(true);
-                        this.dispose();
                         
+                        }   
                     } else {
                         JOptionPane.showMessageDialog(null, "login ou senha invalidos ");
                     }
@@ -127,6 +135,8 @@ public class login extends javax.swing.JInternalFrame {
         }
         tbUsuario.setText("");
         tbSenha.setText("");
+        menu.btLogin.setEnabled(true);
+        this.dispose();
 
         //        tela.setVisible(true);
         //        login.setVisible(false);

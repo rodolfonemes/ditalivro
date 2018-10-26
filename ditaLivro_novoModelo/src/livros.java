@@ -193,7 +193,7 @@ public class livros extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
+        setResizable(true);
         setTitle("Cadastro / Consulta de livros");
 
         Tabela2.setAutoCreateRowSorter(true);

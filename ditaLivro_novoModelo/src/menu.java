@@ -1,4 +1,6 @@
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,9 +14,10 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class menu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form menu
-     */
+    Toolkit tk = Toolkit.getDefaultToolkit();
+       Dimension d = tk.getScreenSize();
+      
+     
     public menu() {
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -30,6 +33,7 @@ public class menu extends javax.swing.JFrame {
         }
         initComponents();
        setExtendedState(JFrame.MAXIMIZED_BOTH);
+       
         
     }
 
@@ -38,37 +42,47 @@ public class menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        brLogin = new javax.swing.JButton();
+        btLogin = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         desktop = new javax.swing.JDesktopPane();
+        jSeparator2 = new javax.swing.JSeparator();
         btTela = new javax.swing.JButton();
         btVendas = new javax.swing.JButton();
         btCadUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dita Livros");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
             }
-        });
-
-        brLogin.setText("Login");
-        brLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                brLoginActionPerformed(evt);
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
+
+        btLogin.setText("Login");
+        btLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLoginActionPerformed(evt);
+            }
+        });
+
+        desktop.setLayer(jSeparator2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
         desktop.setLayout(desktopLayout);
         desktopLayout.setHorizontalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jSeparator2)
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopLayout.createSequentialGroup()
+                .addContainerGap(570, Short.MAX_VALUE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         btTela.setText("Livros");
@@ -107,7 +121,7 @@ public class menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
                         .addComponent(btCadUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(brLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(desktop, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -118,7 +132,7 @@ public class menu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                         .addComponent(btVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(brLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btTela, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btCadUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -132,7 +146,7 @@ public class menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private void brLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brLoginActionPerformed
+    private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
 login lo = new login();
 desktop.add(lo);
 lo.setVisible(true);
@@ -145,16 +159,20 @@ e2.printStackTrace();
 btTela.setEnabled(false);
 btVendas.setEnabled(false);
 btCadUsuario.setVisible(false);
+btLogin.setEnabled(false);
+
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_brLoginActionPerformed
+    }//GEN-LAST:event_btLoginActionPerformed
 
     private void btTelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTelaActionPerformed
 livros te = new livros();
 desktop.add(te);
 te.setVisible(true);
 try {
-te.setMaximum(true);
+
+te.setSize(d.width-12, d.height-130);
+//te.setMaximum(true);
 te.setSelected(true);
 } catch (Exception e2) {
 e2.printStackTrace();
@@ -164,18 +182,6 @@ e2.printStackTrace();
     }//GEN-LAST:event_btTelaActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-login lo = new login();
-desktop.add(lo);
-lo.setVisible(true);
-try {
-lo.setMaximum(true);
-lo.setSelected(true);
-} catch (Exception e2) {
-e2.printStackTrace();
-}
-//btTela.setEnabled(false);
-//btVendas.setEnabled(false);
-//btCadUsuario.setVisible(false);
 
     }//GEN-LAST:event_formWindowActivated
 
@@ -184,7 +190,9 @@ e2.printStackTrace();
 desktop.add(ve);
 ve.setVisible(true);
 try {
-ve.setMaximum(true);
+
+ve.setSize(d.width-12, d.height-130);
+//ve.setMaximum(true);
 ve.setSelected(true);
 } catch (Exception e2) {
 e2.printStackTrace();
@@ -197,6 +205,23 @@ cadastroUsuario cadUsuario = new cadastroUsuario();
 desktop.add(cadUsuario);
 cadUsuario.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_btCadUsuarioActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+login lo = new login();
+desktop.add(lo);
+lo.setVisible(true);
+try {
+lo.setMaximum(true);
+lo.setSelected(true);
+} catch (Exception e2) {
+e2.printStackTrace();
+}
+btLogin.setEnabled(false);
+btTela.setEnabled(false);
+btVendas.setEnabled(false);
+btCadUsuario.setVisible(false);        
+// TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -230,11 +255,12 @@ cadUsuario.setVisible(true);// TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JButton brLogin;
     public static javax.swing.JButton btCadUsuario;
+    public static javax.swing.JButton btLogin;
     public static javax.swing.JButton btTela;
     public static javax.swing.JButton btVendas;
     public static javax.swing.JDesktopPane desktop;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

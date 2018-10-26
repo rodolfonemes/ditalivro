@@ -32,33 +32,29 @@
           <Component id="jSeparator1" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="btTela" min="-2" pref="114" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btVendas" min="-2" pref="116" max="-2" attributes="0"/>
-                      <EmptySpace pref="274" max="32767" attributes="0"/>
-                      <Component id="btCadUsuario" min="-2" pref="133" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btLogin" min="-2" pref="115" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="desktop" alignment="1" max="32767" attributes="0"/>
-              </Group>
+              <Component id="btTela" min="-2" pref="114" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btVendas" min="-2" pref="116" max="-2" attributes="0"/>
+              <EmptySpace pref="52" max="32767" attributes="0"/>
+              <Component id="tbBemVindos" min="-2" pref="160" max="-2" attributes="0"/>
+              <EmptySpace pref="62" max="32767" attributes="0"/>
+              <Component id="btCadUsuario" min="-2" pref="133" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btLogin" min="-2" pref="115" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
+          <Component id="desktop" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="103" groupAlignment="3" max="-2" attributes="0">
-                      <Component id="btVendas" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="btLogin" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="btTela" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="btCadUsuario" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btTela" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="btVendas" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="tbBemVindos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btLogin" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btCadUsuario" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
@@ -72,6 +68,9 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="btLogin">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/imagens/patinha.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Login"/>
       </Properties>
       <Events>
@@ -97,7 +96,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="570" max="32767" attributes="0"/>
+                  <EmptySpace pref="641" max="32767" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
@@ -111,6 +110,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="btTela">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/imagens/gato livro22.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Livros"/>
       </Properties>
       <Events>
@@ -122,6 +124,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btVendas">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/imagens/CESTA.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Vendas"/>
       </Properties>
       <Events>
@@ -138,6 +143,17 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCadUsuarioActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="tbBemVindos">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Yu Gothic" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="BEM VINDO(A)"/>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>

@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `ditalivros` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
-USE `ditalivros`;
 -- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: ditalivros
@@ -18,35 +16,29 @@ USE `ditalivros`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `livros`
+-- Table structure for table `usuario`
 --
 
-DROP TABLE IF EXISTS `livros`;
+DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `livros` (
-  `livro_isbn` decimal(60,0) NOT NULL,
-  `livro_titulo` varchar(60) DEFAULT NULL,
-  `livro_autor` varchar(60) DEFAULT NULL,
-  `livro_editora` varchar(60) DEFAULT NULL,
-  `livro_ano` decimal(6,0) DEFAULT NULL,
-  `livro_tipo` varchar(9) DEFAULT NULL,
-  `livro_estante` varchar(30) DEFAULT NULL,
-  `livro_descricao` varchar(145) DEFAULT NULL,
-  `livro_quantidade` decimal(3,0) DEFAULT NULL,
-  `livro_VALOR` decimal(5,0) DEFAULT NULL,
-  PRIMARY KEY (`livro_isbn`)
+CREATE TABLE `usuario` (
+  `cpf` varchar(20) NOT NULL,
+  `senha` varchar(20) DEFAULT NULL,
+  `nome` varchar(20) DEFAULT NULL,
+  `trocarSenha` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`cpf`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `livros`
+-- Dumping data for table `usuario`
 --
 
-LOCK TABLES `livros` WRITE;
-/*!40000 ALTER TABLE `livros` DISABLE KEYS */;
-INSERT INTO `livros` VALUES (0,'titulo','autor','editora',0,'tipo','estante','descrição333333333333333',0,0),(1,'titulo','autor','editora',2018,'tipo','estante','descrição ',3,2),(2,'2','2','2',2,'2','2','2',2,2),(3,'3a','3','3',3,'3','3','3',3,3),(4,'4','4','4',4,'4','4','4',4,4),(5,'','0','',0,'','','',0,0),(6,'','0','',0,'','','',0,0),(7,'','','',0,'','','',0,0),(9,'','','',0,'','','',0,0),(10,'','0','',0,'','','',0,0),(11,'','','',0,'','','',0,0),(12,'','','',0,'','','',0,0);
-/*!40000 ALTER TABLE `livros` ENABLE KEYS */;
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES ('','','',NULL),('1','123','',0),('12','12','',0),('123','123','',0),('1234','1234','rodolfo',0),('12343445556','12','12',NULL),('123445','123',NULL,NULL),('12345','12',NULL,NULL),('234','123',NULL,NULL),('326','0987','rodolfo_admin',NULL),('90','90','90',1);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -58,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-11 15:50:30
+-- Dump completed on 2018-10-26 15:57:14

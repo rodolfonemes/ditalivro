@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `ditalivros` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
-USE `ditalivros`;
 -- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
 -- Host: localhost    Database: ditalivros
@@ -18,27 +16,28 @@ USE `ditalivros`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usuario`
+-- Table structure for table `vendas`
 --
 
-DROP TABLE IF EXISTS `usuario`;
+DROP TABLE IF EXISTS `vendas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `usuario` (
-  `cpf` decimal(20,0) NOT NULL,
-  `senha` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`cpf`)
+CREATE TABLE `vendas` (
+  `cod_vendas` varchar(6) NOT NULL,
+  `nome_vendas` varchar(30) DEFAULT NULL,
+  `cpf_vendas` varchar(19) DEFAULT NULL,
+  PRIMARY KEY (`cod_vendas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuario`
+-- Dumping data for table `vendas`
 --
 
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (123,'12'),(234,'122222'),(326,'0987');
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+LOCK TABLES `vendas` WRITE;
+/*!40000 ALTER TABLE `vendas` DISABLE KEYS */;
+INSERT INTO `vendas` VALUES ('0','rodolfo','326'),('000','','   .   .   -  '),('1','rodolfo','326'),('2','rodolfo','326.093.908-31'),('3','rosangela','173.917.998-66'),('4','123123','123.123.123-12'),('5','teste','123.456.789-01'),('6','123','   .   .   -  '),('7','123','123.123.123-12'),('8','obaaa','123.456.789-00');
+/*!40000 ALTER TABLE `vendas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-11 15:50:30
+-- Dump completed on 2018-10-26 15:57:15

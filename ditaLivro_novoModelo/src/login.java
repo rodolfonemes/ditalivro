@@ -86,7 +86,7 @@ public class login extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
-        Usuario pr;
+        Usuario pr = null;
         String usuario;
         String senha;
         
@@ -129,10 +129,12 @@ public class login extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(null, "login ou senha invalidos");
                     
                 }
+                menu.tbBemVindos.setText("Bem Vindo(a) " + pr.getNome()); 
             } catch (SQLException ex) {
             }
-            
+           
         }
+        
         tbUsuario.setText("");
         tbSenha.setText("");
         menu.btLogin.setEnabled(true);

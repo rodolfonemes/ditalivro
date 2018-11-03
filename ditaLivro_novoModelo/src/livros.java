@@ -1,4 +1,7 @@
 
+
+
+
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -193,6 +196,7 @@ public class livros extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
+        setMaximizable(true);
         setResizable(true);
         setTitle("Cadastro / Consulta de livros");
 

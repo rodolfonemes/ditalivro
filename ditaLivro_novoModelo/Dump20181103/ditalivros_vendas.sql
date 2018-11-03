@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `vendas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `vendas` (
-  `cod_vendas` varchar(6) NOT NULL,
+  `cod_vendas` int(6) NOT NULL,
   `nome_vendas` varchar(30) DEFAULT NULL,
   `cpf_vendas` varchar(19) DEFAULT NULL,
   PRIMARY KEY (`cod_vendas`)
@@ -36,7 +36,6 @@ CREATE TABLE `vendas` (
 
 LOCK TABLES `vendas` WRITE;
 /*!40000 ALTER TABLE `vendas` DISABLE KEYS */;
-INSERT INTO `vendas` VALUES ('0','rodolfo','326'),('000','','   .   .   -  '),('1','rodolfo','326'),('2','rodolfo','326.093.908-31'),('3','rosangela','173.917.998-66'),('4','123123','123.123.123-12'),('5','teste','123.456.789-01'),('6','123','   .   .   -  '),('7','123','123.123.123-12'),('8','obaaa','123.456.789-00');
 /*!40000 ALTER TABLE `vendas` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-26 15:57:15
+-- Dump completed on 2018-11-03 14:48:07

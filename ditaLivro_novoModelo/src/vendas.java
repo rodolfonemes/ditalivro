@@ -10,27 +10,27 @@
  */
 public class vendas {
 
-    private String cod_vendas;
+    private int cod_vendas;
     private String nome_vendas;
     private String cpf_vendas;
     
     public vendas() {
-        this.cod_vendas = "";
+        this.cod_vendas = 0;
         this.nome_vendas = "";
         this.cpf_vendas = "";
     }
     
     public vendas(String cod_vendas, String nome_vendas, String cpf_vendas) {
-        this.cod_vendas = "";
+        this.cod_vendas = 0;
         this.nome_vendas = "";
         this.cpf_vendas = "";
     }
 
-    public String getCod_vendas() {
+    public int getCod_vendas() {
         return cod_vendas;
     }
 
-    public void setCod_vendas(String cod_vendas) {
+    public void setCod_vendas(int cod_vendas) {
         this.cod_vendas = cod_vendas;
     }
 

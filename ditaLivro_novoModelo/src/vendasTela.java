@@ -1,12 +1,8 @@
 
-import java.beans.PropertyVetoException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.AttributeSet;
@@ -18,34 +14,35 @@ import javax.swing.text.PlainDocument;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author rnsilva
  */
 public class vendasTela extends javax.swing.JInternalFrame {
-    
-    int contador = 100;
+
+    int contador = 1;
+    int a = 0;
     String texto = null;
     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-    
+
     public class DocumentoLimitado extends PlainDocument {
-        
+
         private int tamanhoMax = 10;
-        
+
         public DocumentoLimitado(int tamanhoMax) {
             this.tamanhoMax = tamanhoMax;
         }
-        
+
+        @Override
         public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
-            
+
             if (str == null) {
                 return;
             }
-            
+
             String stringAntiga = getText(0, getLength());
             int tamanhoNovo = stringAntiga.length() + str.length();
-            
+
             if (tamanhoNovo <= tamanhoMax) {
                 super.insertString(offset, str, attr);
             } else {
@@ -56,15 +53,12 @@ public class vendasTela extends javax.swing.JInternalFrame {
 
     public vendasTela() {
         initComponents();
-         
+
         calendario.setDate(new Date());
-        
-        
+
     }
 
-  
-    
-       
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -98,10 +92,12 @@ public class vendasTela extends javax.swing.JInternalFrame {
         btRemoverVenda = new javax.swing.JButton();
         btFinalizarVenda = new javax.swing.JButton();
         btNovaVenda = new javax.swing.JButton();
+        btCancelarVenda = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setClosable(true);
         setIconifiable(true);
+        setMaximizable(true);
         setResizable(true);
         setTitle("Vendas");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
@@ -130,9 +126,16 @@ public class vendasTela extends javax.swing.JInternalFrame {
                 "CODIGO", "ISBN", "TITULO", "AUTOR", "EDITORA", "QUANTIDADE", "DATA"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -317,6 +320,13 @@ public class vendasTela extends javax.swing.JInternalFrame {
             }
         });
 
+        btCancelarVenda.setText("Cancelar");
+        btCancelarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarVendaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -324,12 +334,17 @@ public class vendasTela extends javax.swing.JInternalFrame {
             .addComponent(btAddVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btRemoverVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btFinalizarVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btNovaVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(btNovaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btCancelarVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(btNovaVenda)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btNovaVenda)
+                    .addComponent(btCancelarVenda))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btAddVenda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -352,7 +367,7 @@ public class vendasTela extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(painelVendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(0, 81, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,7 +391,7 @@ public class vendasTela extends javax.swing.JInternalFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 646, Short.MAX_VALUE)
+            .addGap(0, 602, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,10 +404,10 @@ public class vendasTela extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(abaVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(abaVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -427,7 +442,7 @@ public class vendasTela extends javax.swing.JInternalFrame {
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Cliente nao cadastrado");
-                   
+
                 }
             } catch (SQLException ex) {
             }
@@ -485,34 +500,73 @@ public class vendasTela extends javax.swing.JInternalFrame {
         }
 
         // TODO add your handling code here:
+        
+//        a--;
+//      contador--;
     }//GEN-LAST:event_btRemoverVendaActionPerformed
 
     private void btFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFinalizarVendaActionPerformed
         vendas ve = null;
-        
+        pedido pe = null;
+
         BDvendas bd = new BDvendas();
+        BDpedido bd2 = new BDpedido();
+
         if (ve != null) {
             JOptionPane.showMessageDialog(null, "codigo ja cadastrado");
         } else {
-            
+
             ve = new vendas();
             //if(pr.getIsbn()!= null){
-            ve.setCod_vendas(lbContadorVendas.getText());
+            ve.setCod_vendas(Integer.valueOf(lbContadorVendas.getText()));
             ve.setNome_vendas(tbClienteNomeVenda.getText());
             ve.setCpf_vendas(tbClienteCpfVenda.getText());
-            
-            
+
             BDvendas bdpr = new BDvendas();
+            //BDpedido bdpr2 = new BDpedido();
             try {
                 bdpr.adicionarVendas(ve);
-                
-                JOptionPane.showMessageDialog(null, "Registro gravado com sucesso");
-                
+
+                //JOptionPane.showMessageDialog(null, "Registro gravado com sucesso2");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao gravar");
             }
-            
+
+            pe = new pedido();
+            //int a = 0;
+            for (int i = 0; i <= tabelaVenda.getRowCount()-1; i++) {
+                a++;
+
+                pe.setCod_pedido(a);
+                //int isbn = Integer.valueOf(String.valueOf(tabelaVenda.getValueAt(i, 1)));
+                String isbn = (String) tabelaVenda.getValueAt(i, 1);
+                pe.setCod_livros_isbn_pedido(Integer.valueOf(isbn));
+//                int conta = Integer.valueOf(lbContadorVendas.getText());
+//                conta--;
+                pe.setCod_venda_pedido(Integer.valueOf(lbContadorVendas.getText()));
+                pe.setData_pedido((String) tabelaVenda.getValueAt(i, 6));
+                pe.setQuant_pedido((String) tabelaVenda.getValueAt(i, 5));
+
+//                JOptionPane.showMessageDialog(null, 
+//                        pe.getCod_pedido() + ", " 
+//                       + pe.getCod_venda_pedido() + ", " 
+//                       + pe.getCod_livros_isbn_pedido() + ", "
+//                       + pe.getData_pedido() + ", "
+//                       + pe.getQuant_pedido() + ", ");
+
+                BDpedido bdpr2 = new BDpedido();
+                try {
+                    bdpr2.adicionarPedido(pe);
+
+                    //JOptionPane.showMessageDialog(null, "pedido com sucesso3");
+
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro ao gravar");
+                }
+            }
+
         }
+        JOptionPane.showMessageDialog(null, "pedido gravado com sucesso");
         tbClienteNomeVenda.setEnabled(false);
         tbClienteCpfVenda.setEnabled(false);
         tbQuantVenda.setEnabled(false);
@@ -523,69 +577,103 @@ public class vendasTela extends javax.swing.JInternalFrame {
         tbConsultaVenda.setText("");
         btPesquisaVenda.setEnabled(true);
         tbClienteNomeVenda.setText("");
-        tbTituloVenda.setText("");;
-        tbAutorVenda.setText("");;
+        tbTituloVenda.setText("");
+        tbAutorVenda.setText("");
         tbEditoraVenda.setText("");
         ((DefaultTableModel) tabelaVenda.getModel()).setNumRows(0);
         tabelaVenda.updateUI();
-        btPesquisaVenda.setEnabled(false);  
-btRemoverVenda.setEnabled(false);
-btFinalizarVenda.setEnabled(false);
-btAddVenda.setEnabled(false);
+        btPesquisaVenda.setEnabled(false);
+        btRemoverVenda.setEnabled(false);
+        btFinalizarVenda.setEnabled(false);
+        btAddVenda.setEnabled(false);
+        btCancelarVenda.setEnabled(false);
+        btNovaVenda.setEnabled(true);
         
+
     }//GEN-LAST:event_btFinalizarVendaActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-tbClienteNomeVenda.setEnabled(false);
-tbClienteCpfVenda.setEnabled(false);
-tbQuantVenda.setEnabled(false);
-tbConsultaVenda.setEnabled(false);
-btPesquisaVenda.setEnabled(false);  
-btRemoverVenda.setEnabled(false);
-btFinalizarVenda.setEnabled(false);
-btAddVenda.setEnabled(false);
-
+        tbClienteNomeVenda.setEnabled(false);
+        tbClienteCpfVenda.setEnabled(false);
+        tbQuantVenda.setEnabled(false);
+        tbConsultaVenda.setEnabled(false);
+        btPesquisaVenda.setEnabled(false);
+        btRemoverVenda.setEnabled(false);
+        btFinalizarVenda.setEnabled(false);
+        btAddVenda.setEnabled(false);
+        btCancelarVenda.setEnabled(false);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void btNovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovaVendaActionPerformed
-      
+
         tbClienteNomeVenda.setEnabled(true);
-tbClienteCpfVenda.setEnabled(true);
-tbQuantVenda.setEnabled(true);
-tbConsultaVenda.setEnabled(true);
-btPesquisaVenda.setEnabled(true);
-btRemoverVenda.setEnabled(true);
-btFinalizarVenda.setEnabled(true);
-btAddVenda.setEnabled(true);
-  
-BDvendas bd;
+        tbClienteCpfVenda.setEnabled(true);
+        tbQuantVenda.setEnabled(true);
+        tbConsultaVenda.setEnabled(true);
+        btPesquisaVenda.setEnabled(true);
+        btRemoverVenda.setEnabled(true);
+        btFinalizarVenda.setEnabled(true);
+        btAddVenda.setEnabled(true);
+        btNovaVenda.setEnabled(false);
+        btCancelarVenda.setEnabled(true);
+
+        BDvendas bd;
         vendas pro;
         //String iCodigo;
         //iCodigo = ("0");
         bd = new BDvendas();
         pro = new vendas();
-        JOptionPane.showMessageDialog(null,"teste");
+        //JOptionPane.showMessageDialog(null,"teste");
         try {
             pro = bd.procurarUltimoRegistro();
-            int num = Integer.valueOf(pro.getCod_vendas());
+            int num = pro.getCod_vendas();
             num++;
             lbContadorVendas.setText(String.valueOf(num));
-            JOptionPane.showMessageDialog(null,pro.getCod_vendas());
-            
+            //JOptionPane.showMessageDialog(null, pro.getCod_vendas());
+
         } catch (SQLException ex) {
 
         }
-        
-        
-        
+
+      a = 0;
+      contador = 1;
     }//GEN-LAST:event_btNovaVendaActionPerformed
+
+    private void btCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarVendaActionPerformed
+        tbClienteNomeVenda.setEnabled(false);
+        tbClienteCpfVenda.setEnabled(false);
+        tbQuantVenda.setEnabled(false);
+        tbConsultaVenda.setEnabled(false);
+        btPesquisaVenda.setEnabled(false);
+        tbClienteCpfVenda.setText("");
+        tbQuantVenda.setText("");
+        tbConsultaVenda.setText("");
+        btPesquisaVenda.setEnabled(true);
+        tbClienteNomeVenda.setText("");
+        tbTituloVenda.setText("");
+        tbAutorVenda.setText("");
+        tbEditoraVenda.setText("");
+        ((DefaultTableModel) tabelaVenda.getModel()).setNumRows(0);
+        tabelaVenda.updateUI();
+        btPesquisaVenda.setEnabled(false);
+        btRemoverVenda.setEnabled(false);
+        btFinalizarVenda.setEnabled(false);
+        btAddVenda.setEnabled(false);
+        btNovaVenda.setEnabled(true);
+        btCancelarVenda.setEnabled(false);
+        a = 0;
+      contador = 1;
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_btCancelarVendaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane abaVendas;
     private javax.swing.JButton btAddVenda;
+    private javax.swing.JButton btCancelarVenda;
     private javax.swing.JButton btFinalizarVenda;
     private javax.swing.JButton btNovaVenda;
     private javax.swing.JButton btPesquisaVenda;
@@ -600,7 +688,7 @@ BDvendas bd;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane2;
+    public static javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lb1;
     private javax.swing.JLabel lb2;
     private javax.swing.JLabel lb3;

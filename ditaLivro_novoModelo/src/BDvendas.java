@@ -1,4 +1,6 @@
 
+
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,13 +27,13 @@ PreparedStatement pstmt;
         try {
             con = CriarConexao.getConexao();
             pstmt = con.prepareStatement(sInsert);
-            pstmt.setString(1, v.getCod_vendas());
+            pstmt.setInt(1, v.getCod_vendas());
             pstmt.setString(2, v.getNome_vendas());
             pstmt.setString(3, v.getCpf_vendas());
             pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Venda gravado com sucesso");
+            //JOptionPane.showMessageDialog(null, "Venda gravado com sucesso2");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "erro");
+            JOptionPane.showMessageDialog(null, "erro vendas");
         }
     }        
    
@@ -53,7 +55,7 @@ PreparedStatement pstmt;
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 pr = new vendas();
-                pr.setCod_vendas(rs.getString("cod_vendas"));
+                pr.setCod_vendas(rs.getInt("cod_vendas"));
                 pr.setNome_vendas(rs.getString("nome_vendas"));
                 pr.setCpf_vendas(rs.getString("cpf_vendas"));
                 listaVendas.add(pr);
@@ -84,7 +86,7 @@ public vendas procurarVendas(String pCodigo) throws SQLException {
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 pr = new vendas();
-                pr.setCod_vendas(rs.getString("cod_vendas"));
+                pr.setCod_vendas(rs.getInt("cod_vendas"));
                 pr.setNome_vendas(rs.getString("nome_vendas"));
                 pr.setCpf_vendas(rs.getString("cpf_vendas"));
                 JOptionPane.showMessageDialog(null, pr);
@@ -112,7 +114,7 @@ public vendas procurarUltimoRegistro() throws SQLException {
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 pr = new vendas();
-                pr.setCod_vendas(rs.getString("cod_vendas"));
+                pr.setCod_vendas(rs.getInt("cod_vendas"));
                 
                return pr;
             } else {
